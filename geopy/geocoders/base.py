@@ -133,12 +133,8 @@ class Geocoder(object): # pylint: disable=R0921
         """
         requester = requester or self.urlopen
 
-        if not requester:
-            req = Request(url=url, headers=self.headers)
-        else:
-            # work around for placefinder's use of requests
-            req = url
-
+        req = Request(url=url, headers=self.headers)
+        
         try:
             page = requester(req, timeout=(timeout or self.timeout), **kwargs)
         except Exception as error: # pylint: disable=W0703
